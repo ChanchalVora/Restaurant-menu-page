@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///C:/Users/chanc/OneDrive/Desktop/L&Tproject.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savory Symphony</title>
+  <style>
+    /* ----- Base Styles ----- */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffaf5;
+      margin: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff6f61;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    /* ----- Filters Section ----- */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      background-color: #ffe5d9;
+    }
+
+    /* Category filter buttons */
+    .category-btn {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Dietary radio toggles - custom styling */
+    .diet-toggle {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .diet-toggle input[type="radio"] {
+      display: none;
+    }
+    .custom-radio {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      background: #e6f7f1;
+      color: #0b684f;
+      border: 2px solid #0b684f;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+      position: relative;
+    }
+    .diet-toggle input[type="radio"]:checked + .custom-radio {
+      background: #0b684f;
+      color: #fff;
+      border-color: #0b684f;
+    }
+
+    /* Price Range Slider */
+    .slider-label {
+      margin-left: 1.5rem;
+      margin-right: 0.7rem;
+      font-weight: bold;
+      color: #ff6f61;
+    }
+    .price-slider {
+      appearance: none;
+      width: 120px;
+      height: 5px;
+      background: #ffb4a2;
+      outline: none;
+      border-radius: 8px;
+      margin-right: 0.6rem;
+      position: relative;
+    }
+    .price-slider::-webkit-slider-thumb,
+    .price-slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      background: #ff6f61;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #ff6f6188;
+    }
+
+    /* ----- Section Dividers ----- */
+    .divider {
+      display: flex;
+      align-items: center;
+      width: 90%;
+      margin: 2rem auto 1.2rem auto;
+      opacity: 0.85;
+    }
+    .divider-line {
+      flex: 1;
+      border-bottom: 2px dashed #ffb4a2;
+    }
+    .divider-icon {
+      margin: 0 1rem;
+      font-size: 1.9rem;
+      color: #0b684f;
+    }
+
+    /* ----- Menu Grid Layout ----- */
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      transition: filter 0.2s;
+    }
+
+    /* ----- Dish Card Styles ----- */
+    .dish {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      position: relative;
+      min-height: 280px;
+    }
+    .dish:hover {
+      transform: scale(1.03) translateY(-2px);
+      z-index: 2;
+    }
+    .dish img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 2px solid #ffb4a2;
+    }
+    .dish-info {
+      padding: 1rem;
+    }
+    .dish-info h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #ff6f61;
+      font-weight: bold;
+    }
+    .dish-info .price {
+      font-weight: bold;
+      color: #333;
+      margin-top: 0.5rem;
+    }
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .tag {
+      background-color: #e6f7f1;
+      color: #0b684f;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Chef's Special Badge (animated) */
+    .chefs-special {
+
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #ffd803;
+      color: #ff6f61;
+      font-weight: bold;
+      font-size: 0.95rem;
+      padding: 0.45rem 1rem;
+      border-radius: 50px;
+      box-shadow: 0 1px 6px #ffd80344;
+      animation: rotate-badge 5s linear infinite;
+z-index; 999;
+    }
+    @keyframes rotate-badge {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    /* Hover: Reveal Dish Description */
+    .dish-description {
+      opacity: 0;
+      max-height: 0;
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 0.5rem;
+      transition: opacity 0.35s, max-height 0.4s;
+      overflow: hidden;
+    }
+    .dish:hover .dish-description {
+      opacity: 1;
+      max-height: 100px;
+    }
+
+    /* ----- Fixed Order Button ----- */
+    .order-btn {
+      position: fixed;
+      bottom: 38px;
+      right: 38px;
+      background: #ff6f61;
+      color: white;
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 6px 24px #ff6f6166;
+      cursor: pointer;
+      z-index: 100;
+      transition: background 0.15s;
+    }
+    .order-btn:hover {
+      background: #0b684f;
+    }
+
+    /* ----- Fake Cart Counter (Optional) ----- */
+    .cart-box {
+      position: fixed; 
+      top: 32px; 
+      right: 40px; 
+      z-index: 99;
+      display: flex; 
+      align-items: center;
+      background: #ffe5d9;
+      color: #ff6f61;
+      border-radius: 16px;
+      padding: 0.45rem 1.2rem;
+      box-shadow: 0 1px 12px #ffb4a273;
+      font-weight: bold;
+      gap: 0.5rem;
+      animation: cartpop 1.6s infinite alternate;
+    }
+    @keyframes cartpop {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.08);}
+      100% {transform: scale(1);}
+    }
+
+    /* Responsive tweaks */
+    @media (max-width:600px){
+      .filters { gap: 0.6rem; }
+      .order-btn, .cart-box { right: 12px; }
+      .order-btn { padding: 0.8rem 1.5rem; font-size: 1.05rem; }
+      .menu { padding: 1rem; }
+      .divider { width: 98%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ----- Header ----- -->
+  <header>
+    <h1>Savory Symphony</h1>
+    <p>Farm-forward • Seasonal • Shareable</p>
+  </header>
+
+  <!-- ----- Filters Section ----- -->
+  <div class="filters">
+    <!-- Category Buttons -->
+    <button class="category-btn">All</button>
+    <button class="category-btn">Starters</button>
+    <button class="category-btn">Mains</button>
+    <button class="category-btn">Desserts</button>
+
+    <!-- Dietary Filters (radio toggles) -->
+    <div class="diet-toggle">
+      <input type="radio" name="diet" id="vegan">
+      <label for="vegan" class="custom-radio">Vegan</label>
+
+      <input type="radio" name="diet" id="gf">
+      <label for="gf" class="custom-radio">GF</label>
+
+      <input type="radio" name="diet" id="none" checked="">
+      <label for="none" class="custom-radio">All Diets</label>
+    </div>
+
+    <!-- Price Range Slider -->
+    <span class="slider-label">Price Range</span>
+    <input type="range" min="199" max="999" value="499" class="price-slider">
+    <span style="font-size:0.90rem;color:#333;">₹199–₹999</span>
+  </div>
+
+  <!-- Fake Cart (Optional) -->
+  <div class="cart-box">
+    🛒 <span>3</span> items
+  </div>
+
+  <!-- ----- Menu Section ----- -->
+  <div class="menu">
+
+    <!-- ---- Starters Divider ---- -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-icon">🥄</span>
+      <div class="divider-line"></div>
+    </div>
+    <!-- ---- Starters ---- -->
+    <div class="dish">
+      <img src="./Savory Symphony_files/tomato.jpg">
+      <div class="dish-info">
+        <h3>Tomato Bruschetta</h3>
+        <p class="price">₹199</p>
+        <div class="tags">
+          <span class="tag">Vegan</span>
+        </div>
+        <div class="dish-description">
+          Grilled sourdough, tomatoes, basil — light &amp; fresh starter.
+        </div>
+      </div>
+    </div>
+
+    <div class="dish">
+      <img src="./Savory Symphony_files/ceviche.jpg">
+      <div class="dish-info">
+        <h3>Citrus Ceviche</h3>
+        <p class="price">₹349</p>
+        <div class="tags">
+          <span class="tag">Gluten-free</span>
+        </div>
+        <div class="dish-description">
+          Marinated fish, lime, shallots <br>zesty and bright.
+        </div>
+      </div>
+    </div>
+
+    <div class="dish">
+      <img src="./Savory Symphony_files/stuffed.jpg">
+      <div class="dish-info">
+        <h3>Stuffed Mushrooms</h3>
+        <p class="price">₹299</p>
+        <div class="tags">
+          <span class="tag">GF</span>
+        </div>
+        <div class="dish-description">
+          Herbed cream cheese, garlic, baked to perfection.
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Mains Divider ---- -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-icon">🍴</span>
+      <div class="divider-line"></div>
+    </div>
+    <!-- ---- Mains ---- -->
+    <div class="dish">
+      <img src="./Savory Symphony_files/bowl.jpg">
+      <div class="dish-info">
+        <h3>Buddha Bowl</h3>
+        <p class="price">₹449</p>
+        <div class="tags">
+          <span class="tag">Vegan</span>
+          <span class="tag">GF</span>
+        </div>
+        <div class="dish-description">
+          Quinoa, roasted veg, tahini dressing — nourishing grain bowl.
+        </div>
+      </div>
+    </div>
+
+    <div class="dish">
+      <img src="./Savory Symphony_files/chargrilled.jpg">
+      <span class="chefs-special">Chef's Special</span>
+      <div class="dish-info">
+        <h3>Chargrilled Rib-eye</h3>
+        <p class="price">₹799</p>
+        <div class="tags">
+          <span class="tag">Chef's choice</span>
+        </div>
+        <div class="dish-description">
+          Served with rosemary butter and roasted potatoes.
+        </div>
+      </div>
+    </div>
+
+    <div class="dish">
+      <img src="./Savory Symphony_files/pomodoro.jpg">
+      <div class="dish-info">
+        <h3>Spaghetti Pomodoro</h3>
+        <p class="price">₹399</p>
+        <div class="tags">
+          <span class="tag">Vegetarian</span>
+        </div>
+        <div class="dish-description">
+          Classic tomato sauce, basil, parmesan.
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Desserts Divider ---- -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-icon">🍰</span>
+      <div class="divider-line"></div>
+    </div>
+    <!-- ---- Desserts ---- -->
+    <div class="dish">
+      <img src="./Savory Symphony_files/lemon.jpg">
+      <div class="dish-info">
+        <h3>Lemon Panna Cotta</h3>
+        <p class="price">₹249</p>
+        <div class="tags">
+          <span class="tag">Gluten-free</span>
+        </div>
+        <div class="dish-description">
+          Silky texture with a bright citrus glaze.
+        </div>
+      </div>
+    </div>
+
+    <div class="dish">
+      <img src="./Savory Symphony_files/mango.jpg">
+      <div class="dish-info">
+        <h3>Mango Sorbet</h3>
+        <p class="price">₹199</p>
+        <div class="tags">
+          <span class="tag">Vegan</span>
+        </div>
+        <div class="dish-description">
+          Refreshing dairy-free dessert, perfect palate cleanser.
+        </div>
+      </div>
+    </div>
+
+    <div class="dish">
+      <img src="./Savory Symphony_files/chocolate.jpg">
+      <div class="dish-info">
+        <h3>Chocolate Mousse</h3>
+        <p class="price">₹299</p>
+        <div class="tags">
+          <span class="tag">Vegetarian</span>
+        </div>
+        <div class="dish-description">
+          Rich cocoa, whipped cream, dark chocolate shavings.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .menu -->
+
+  <!-- ----- Fixed Order Button ----- -->
+  <button class="order-btn">Order Now</button>
+
+
+</body></html>
