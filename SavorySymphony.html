@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savory Symphony</title>
+    <link rel="stylesheet" href="SavorySymphony.css">
+</head>
+
+<body>
+
+    <!-- ----- Header ----- -->
+    <header>
+        <h1>Savory Symphony</h1>
+        <p>Farm-forward • Seasonal • Shareable</p>
+    </header>
+
+    <!-- ----- Filters Section ----- -->
+    <div class="filters">
+        <!-- Category Buttons -->
+        <button class="category-btn">All</button>
+        <button class="category-btn">Starters</button>
+        <button class="category-btn">Mains</button>
+        <button class="category-btn">Desserts</button>
+
+        <!-- Dietary Filters (radio toggles) -->
+        <div class="diet-toggle">
+            <input type="radio" name="diet" id="vegan">
+            <label for="vegan" class="custom-radio">Vegan</label>
+
+            <input type="radio" name="diet" id="gf">
+            <label for="gf" class="custom-radio">GF</label>
+
+            <input type="radio" name="diet" id="none" checked>
+            <label for="none" class="custom-radio">All Diets</label>
+        </div>
+
+        <!-- Price Range Slider -->
+        <span class="slider-label">Price Range</span>
+        <input type="range" min="199" max="999" value="499" class="price-slider">
+        <span style="font-size:0.90rem;color:#333;">₹199–₹999</span>
+    </div>
+
+    <!-- Fake Cart (Optional) -->
+    <div class="cart-box">
+        🛒 <span>3</span> items
+    </div>
+
+    <!-- ----- Menu Section ----- -->
+    <div class="menu">
+
+        <!-- ---- Starters Divider ---- -->
+        <div class="divider">
+            <div class="divider-line"></div>
+            <span class="divider-icon">🥄</span>
+            <div class="divider-line"></div>
+        </div>
+        <!-- ---- Starters ---- -->
+        <div class="dish">
+            <img src="tomato bruh.jpg">
+            <div class="dish-info">
+                <h3>Tomato Bruschetta</h3>
+                <p class="price">₹199</p>
+                <div class="tags">
+                    <span class="tag">Vegan</span>
+                </div>
+                <div class="dish-description">
+                    Grilled sourdough, tomatoes, basil — light &amp; fresh starter.
+                </div>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="ceviche.jpg">
+            <div class="dish-info">
+                <h3>Citrus Ceviche</h3>
+                <p class="price">₹349</p>
+                <div class="tags">
+                    <span class="tag">Gluten-free</span>
+                </div>
+                <div class="dish-description">
+                    Marinated fish, lime, shallots <br>zesty and bright.
+                </div>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="stuffed mushrooms.jpg">
+            <div class="dish-info">
+                <h3>Stuffed Mushrooms</h3>
+                <p class="price">₹299</p>
+                <div class="tags">
+                    <span class="tag">GF</span>
+                </div>
+                <div class="dish-description">
+                    Herbed cream cheese, garlic, baked to perfection.
+                </div>
+            </div>
+        </div>
+
+        <!-- ---- Mains Divider ---- -->
+        <div class="divider">
+            <div class="divider-line"></div>
+            <span class="divider-icon">🍴</span>
+            <div class="divider-line"></div>
+        </div>
+        <!-- ---- Mains ---- -->
+        <div class="dish">
+            <img src="buddha bowl.jpg">
+            <div class="dish-info">
+                <h3>Buddha Bowl</h3>
+                <p class="price">₹449</p>
+                <div class="tags">
+                    <span class="tag">Vegan</span>
+                    <span class="tag">GF</span>
+                </div>
+                <div class="dish-description">
+                    Quinoa, roasted veg, tahini dressing — nourishing grain bowl.
+                </div>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="chargrilled.jpg">
+            <span class="chefs-special">Chef's Special</span>
+            <div class="dish-info">
+                <h3>Chargrilled Rib-eye</h3>
+                <p class="price">₹799</p>
+                <div class="tags">
+                    <span class="tag">Chef's choice</span>
+                </div>
+                <div class="dish-description">
+                    Served with rosemary butter and roasted potatoes.
+                </div>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="pomodoro.jpg">
+            <div class="dish-info">
+                <h3>Spaghetti Pomodoro</h3>
+                <p class="price">₹399</p>
+                <div class="tags">
+                    <span class="tag">Vegetarian</span>
+                </div>
+                <div class="dish-description">
+                    Classic tomato sauce, basil, parmesan.
+                </div>
+            </div>
+        </div>
+
+        <!-- ---- Desserts Divider ---- -->
+        <div class="divider">
+            <div class="divider-line"></div>
+            <span class="divider-icon">🍰</span>
+            <div class="divider-line"></div>
+        </div>
+        <!-- ---- Desserts ---- -->
+        <div class="dish">
+            <img src="lemon.jpg">
+            <div class="dish-info">
+                <h3>Lemon Panna Cotta</h3>
+                <p class="price">₹249</p>
+                <div class="tags">
+                    <span class="tag">Gluten-free</span>
+                </div>
+                <div class="dish-description">
+                    Silky texture with a bright citrus glaze.
+                </div>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="mango.jpg">
+            <div class="dish-info">
+                <h3>Mango Sorbet</h3>
+                <p class="price">₹199</p>
+                <div class="tags">
+                    <span class="tag">Vegan</span>
+                </div>
+                <div class="dish-description">
+                    Refreshing dairy-free dessert, perfect palate cleanser.
+                </div>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="chocolate.jpg">
+            <div class="dish-info">
+                <h3>Chocolate Mousse</h3>
+                <p class="price">₹299</p>
+                <div class="tags">
+                    <span class="tag">Vegetarian</span>
+                </div>
+                <div class="dish-description">
+                    Rich cocoa, whipped cream, dark chocolate shavings.
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end .menu -->
+
+    <!-- ----- Fixed Order Button ----- -->
+    <button class="order-btn">Order Now</button>
+
+</body>
+
+</html>
